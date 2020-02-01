@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!--被vue管理的标签(作用域内)-->
+<div id="moe">
+    <h1>{{message}}</h1>
+
+    <!--直接显示列表-->
+    <h2>{{movies}}</h2>
+
+    <!--标签列表展示-->
+    <ul>
+        <li v-for="item in movies">{{item}}</li>
+    </ul>
+</div>
+
+<!--导入vue-->
+<script src="../static/js/vue.js"></script>
+<!--js-->
+<script>
+    const holyShit = new Vue({
+        el:"#moe",
+        data: {
+            message:'电影列表',
+            movies:['小电影','中奸商','大制作'],
+        }
+    })
+</script>
+<!--
+1.打开浏览器开发者工具console
+2.输入 holyShit.movies.push('大宝剑') 回车，添加新列表元素
+3.输入 holyShit.movies.pop('大宝剑') 回车，删除新列表元素
+...
+-->
+</body>
+</html>

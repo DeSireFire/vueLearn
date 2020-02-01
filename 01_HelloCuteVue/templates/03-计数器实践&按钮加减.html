@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!--被vue管理的标签(作用域内)-->
+<div id="moe">
+    <h1>{{message}}</h1>
+    <h2>当前计数：{{counter}}</h2>
+    <!--v-on:click 与 @click 作用等同，后者为缩写-->
+    <button v-on:click="add">+</button>
+    <button @click="sub">-</button>
+    <!--<标签 @click="methods中的对应函数名称">-</标签>-->
+</div>
+
+<!--导入vue-->
+<script src="../static/js/vue.js"></script>
+<!--js-->
+<script>
+    // 将data单独分离分离出来
+    const dict = {
+        message:'计数器',
+        counter:0,
+    };
+
+    const numRmber = new Vue({
+        el:"#moe",// 约等于 原生JS的document.querySelector("#moe");
+        data: dict,
+        methods:{
+            add: function () {
+                console.log('add run~');
+                // 局部变量加this.
+                this.counter++;
+            },
+            sub: function () {
+                console.log('sub run~');
+                this.counter--;
+            }
+        }
+    })
+    // 1. 设置botton标签
+    // 2. 设置监听事件
+</script>
+</body>
+</html>
