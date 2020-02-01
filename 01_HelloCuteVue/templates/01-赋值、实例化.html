@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!--被vue管理的标签(作用域内)-->
+<div id="app">
+    <span>{{message0}}</span>
+    <h1>{{message}}</h1>
+</div>
+
+<!--未被vue管理的标签(作用域外)-->
+<div>{{message}}</div>
+
+<!--导入vue-->
+<script src="../static/js/vue.js"></script>
+<!--js-->
+<script>
+    // let(变量)/const(常量)
+    // let 声明的对象之后可以修改
+    // const 声明的对象之后不可以修改
+
+    // new 一个实例(实例化)
+    const app = new Vue({
+        // 挂载到id为app的标签元素
+        // id为app的标签里面的东西使用vue处理
+        // 设置该方法的作用域的
+        el:"#app",
+        // 需要挂载到对应位置的数据
+        data: {
+            // key : value,
+            message0:'翻开了我褪了色的相册~',
+            message:'如果让你从新来过，你会不会爱我！'
+        }
+    })
+    // 处理过程描述
+    // 1.创建div元素，设置id属性
+    // 2.定义一个变量叫message
+    // 3.把message变量放在前对应的标签(div)元素中显示
+    // 4.把{{message}}修改data中对应key的value
+    // 5.把改好的内容替换到html作用域范围对应的位置
+</script>
+</body>
+</html>
