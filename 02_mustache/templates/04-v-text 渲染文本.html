@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!--被vue管理的标签(作用域内)-->
+<div id="moe">
+    <h1>{{title}}</h1>
+    <h2>{{message}} 大冬瓜</h2>
+    <div v-text="message">大冬瓜</div>
+    <div v-text="message2">大冬瓜2</div>
+    <p>对比代码，会发现大冬瓜没了，文本被覆盖了</p>
+</div>
+
+<!--导入vue-->
+<script src="../static/js/vue.js"></script>
+<!--js-->
+<script>
+    // 将data单独分离分离出来
+    const datas = {
+        title:'v-text',
+        message:'v-text',
+        message2:'v-text',
+    };
+
+    const test = new Vue({
+        el:"#moe",// 约等于 原生JS的document.querySelector("#moe");
+        data: datas,
+        methods:{
+        }
+    })
+</script>
+</body>
+</html>

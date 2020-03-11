@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!--被vue管理的标签(作用域内)-->
+<div id="moe">
+    <h1>{{title}}</h1>
+    <h2>{{message}}</h2>
+    <img v-bind:src="imgUrl" alt="如果看到这个可能是因为图片地址失效了">
+    <a  v-bind:href="netUrl">bilibili</a>
+    <p>比如动态的获取图片的地址来展示</p>
+
+    <h2>语法糖写法</h2>
+    <img :src="imgUrl" alt="如果看到这个可能是因为图片地址失效了">
+    <a  :href="netUrl">bilibili</a>
+
+</div>
+
+<!--导入vue-->
+<script src="../static/js/vue.js"></script>
+<!--js-->
+<script>
+    // 将data单独分离分离出来
+    const datas = {
+        title:'v-bind',
+        message:'v-bind 动态请求数据动态展示~',
+        imgUrl:'https://i0.hdslb.com/bfs/face/e9c1c2878a0203c53e33a34a6784d6a44367caa0.jpg_64x64.jpg',
+        netUrl:'https://www.bilibili.com',
+    };
+
+    const test = new Vue({
+        el:"#moe",// 约等于 原生JS的document.querySelector("#moe");
+        data: datas,
+        methods:{
+        }
+    })
+</script>
+</body>
+</html>

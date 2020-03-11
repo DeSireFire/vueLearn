@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<!--被vue管理的标签(作用域内)-->
+<div id="moe" v-cloak>
+    <h1>{{title}}</h1>
+    <h2>{{message}} 大冬瓜</h2>
+    <div v-text="message">大冬瓜</div>
+    <div v-text="message2">大冬瓜2</div>
+    <p>cloak 是遮罩样式，vue如果处理逻辑时，结果没出来前就会一直用cloak给盖上~类似loading转圈圈的效果不让人看的意思</p>
+</div>
+
+<!--导入vue-->
+<script src="../static/js/vue.js"></script>
+<!--js-->
+<script>
+    // vue解析之前，div中有一个属性 v-cloak
+    // vue解析之后，div中没有v-cloak消失
+    // 模拟过5秒才处理完
+    setTimeout(function () {
+        // 将data单独分离分离出来
+        const datas = {
+            title:'v-cloak',
+            message:'v-cloak',
+            message2:'v-cloak',
+        };
+
+        const test = new Vue({
+            el:"#moe",// 约等于 原生JS的document.querySelector("#moe");
+            data: datas,
+            methods:{
+            }
+        })
+    },5000);
+</script>
+</body>
+</html>

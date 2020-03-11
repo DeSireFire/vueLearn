@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    .nya {
+        color: aqua;
+    }
+    .wang {
+        color: coral;
+    }
+    .all {
+        font-size: 500%;
+    }
+
+</style>
+<body>
+
+<!--被vue管理的标签(作用域内)-->
+<div id="moe">
+    <h1>{{title}}</h1>
+    <h2>{{message}}</h2>
+    <div class="classContent">大番薯</div>
+    <div v-bind:class="classContent">大番薯</div>
+
+    <h2>语法糖写法</h2>
+    <div class="classContent">大番薯</div>
+    <div :class="classContent">大番薯</div>
+
+    <h2>对象赋值法</h2>
+    <h2 :class="{nya:true,wang:false}">{nya:true,wang:false}</h2>
+    <h2 :class="{nya:false,wang:false}">{nya:false,wang:false}</h2>
+    <h2 :class="{nya:true,wang:true}">{nya:true,wang:true}</h2>
+    <h2 :class="{nya:false,wang:true}">{nya:false,wang:true}</h2>
+    <hr>
+    <h2>动态对象赋值法示例，注意看颜色和网页内容的变化</h2>
+    <h2 :class="{nya:isNya,wang:isWang}">isNya:{{isNya}} isWang:{{isWang}}</h2>
+    <h2>自动与原生class合并</h2>
+    <h2 class="all" :class="{nya:isNya,wang:isWang}">all,isNya:{{isNya}},isWang:{{isWang}}</h2>
+    <h2>使用methods来优化class属性的值</h2>
+    <h2 class="all" :class="getClass()">all,isNya:{{isNya}},isWang:{{isWang}}</h2>
+    <button v-on:click="nya">nya</button>
+    <button @click="wang">wang</button>
+</div>
+
+<!--导入vue-->
+<script src="../static/js/vue.js"></script>
+<!--js-->
+<script>
+    // 将data单独分离分离出来
+    const datas = {
+        title:'v-bind class',
+        message:'v-bind class属性操作 基础和对象语法',
+        classContent:'nya',
+        isNya:true,
+        isWang:false,
+    };
+
+    const test = new Vue({
+        el:"#moe",// 约等于 原生JS的document.querySelector("#moe");
+        data: datas,
+        methods:{
+            nya: function () {
+                // 局部变量加this.
+                // 取反的简略写法
+                this.isNya = !this.isNya;
+            },
+            wang: function () {
+                // 局部变量加this.
+                // 取反的复杂写法
+                if (this.isWang){
+                    this.isWang = false
+                } else {
+                    this.isWang = true
+                }
+            },
+            getClass: function () {
+                return {nya:this.isNya,wang:this.isWang}
+            },
+        }
+    })
+</script>
+</body>
+</html>
