@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!--被vue管理的标签(作用域内)-->
+<div id="moe">
+    <h1>{{title}}</h1>
+    <h2>{{message}}</h2>
+    <button @click="doShow">显示切换  v-if</button>
+    <div v-if="isShow">
+        <ul>
+            <li>if显示</li>
+            <li>if显示</li>
+            <li>if显示</li>
+            <li>if显示</li>
+            <li>if显示</li>
+        </ul>
+    </div>
+    <div v-else="isShow">
+        <ul>
+            <li>else显示</li>
+            <li>else显示</li>
+            <li>else显示</li>
+            <li>else显示</li>
+            <li>else显示</li>
+        </ul>
+    </div>
+
+
+</div>
+
+<!--导入vue-->
+<script src="../static/js/vue.js"></script>
+<!--js-->
+<script>
+    // 将data单独分离分离出来
+    const datas = {
+        title:'条件判断',
+        message:'v-if&&v-else 使用',
+        isShow:false,
+    };
+
+    const test = new Vue({
+        el:"#moe",// 约等于 原生JS的document.querySelector("#moe");
+        data: datas,
+        methods:{
+            doShow() {
+                this.isShow = !this.isShow
+            },
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!--被vue管理的标签(作用域内)-->
+<div id="moe">
+    <h1>{{title}}</h1>
+    <h2>{{message}}</h2>
+    <button @click="doShow">显示切换  v-if</button>
+    <div v-if="isShow">
+        <li>
+            <p class="update-list-left"><a href="’#’" target="’_blank’" title="’书的类别’">类型1《</a><a href="’#’"
+                                                                                                  target="’_blank’"
+                                                                                                  title="’书的名字’">书名1》</a>
+            </p>
+            <p class="update-list-center"><a href="’#’" target="’_blank’" title="’书的名字’">标题1</a>
+            <p class="update-list-right"><a href="’#’" class="update-writer" target="’_blank’"
+                                            title="’作者名’">作者1</a><span class="update-time">18-10-01</span></p>
+            </p>
+        </li>
+        <li>
+            <p class="update-list-left"><a href="’#’" target="’_blank’" title="’书的类别’">类型2《</a><a href="’#’"
+                                                                                                  target="’_blank’"
+                                                                                                  title="’书的名字’">书名2》</a>
+            </p>
+            <p class="update-list-center"><a href="’#’" target="’_blank’" title="’书的名字’">标题2</a>
+            <p class="update-list-right"><a href="’#’" class="update-writer" target="’_blank’"
+                                            title="’作者名’">作者2</a><span class="update-time">18-10-02</span></p>
+            </p>
+        </li>
+        <li>
+            <p class="update-list-left"><a href="’#’" target="’_blank’" title="’书的类别’">类型3《</a><a href="’#’"
+                                                                                                  target="’_blank’"
+                                                                                                  title="’书的名字’">书名3》</a>
+            </p>
+            <p class="update-list-center"><a href="’#’" target="’_blank’" title="’书的名字’">标题3</a>
+            <p class="update-list-right"><a href="’#’" class="update-writer" target="’_blank’"
+                                            title="’作者名’">作者3</a><span class="update-time">18-10-03</span></p>
+            </p>
+        </li>
+        <li>
+            <p class="update-list-left"><a href="’#’" target="’_blank’" title="’书的类别’">类型4《</a><a href="’#’"
+                                                                                                  target="’_blank’"
+                                                                                                  title="’书的名字’">书名4》</a>
+            </p>
+            <p class="update-list-center"><a href="’#’" target="’_blank’" title="’书的名字’">标题4</a>
+            <p class="update-list-right"><a href="’#’" class="update-writer" target="’_blank’"
+                                            title="’作者名’">作者4</a><span class="update-time">18-10-04</span></p>
+            </p>
+        </li>
+        <li>
+            <p class="update-list-left"><a href="’#’" target="’_blank’" title="’书的类别’">类型5《</a><a href="’#’"
+                                                                                                  target="’_blank’"
+                                                                                                  title="’书的名字’">书名5》</a>
+            </p>
+            <p class="update-list-center"><a href="’#’" target="’_blank’" title="’书的名字’">标题5</a>
+            <p class="update-list-right"><a href="’#’" class="update-writer" target="’_blank’"
+                                            title="’作者名’">作者5</a><span class="update-time">18-10-05</span></p>
+            </p>
+        </li>
+        <li>
+            <p class="update-list-left"><a href="’#’" target="’_blank’" title="’书的类别’">类型6《</a><a href="’#’"
+                                                                                                  target="’_blank’"
+                                                                                                  title="’书的名字’">书名6》</a>
+            </p>
+            <p class="update-list-center"><a href="’#’" target="’_blank’" title="’书的名字’">标题6</a>
+            <p class="update-list-right"><a href="’#’" class="update-writer" target="’_blank’"
+                                            title="’作者名’">作者6</a><span class="update-time">18-10-06</span></p>
+            </p>
+        </li>
+        <li>
+            <p class="update-list-left"><a href="’#’" target="’_blank’" title="’书的类别’">类型7《</a><a href="’#’"
+                                                                                                  target="’_blank’"
+                                                                                                  title="’书的名字’">书名7》</a>
+            </p>
+            <p class="update-list-center"><a href="’#’" target="’_blank’" title="’书的名字’">标题7</a>
+            <p class="update-list-right"><a href="’#’" class="update-writer" target="’_blank’"
+                                            title="’作者名’">作者7</a><span class="update-time">18-10-07</span></p>
+            </p>
+        </li>
+        <li>
+            <p class="update-list-left"><a href="’#’" target="’_blank’" title="’书的类别’">类型8《</a><a href="’#’"
+                                                                                                  target="’_blank’"
+                                                                                                  title="’书的名字’">书名8》</a>
+            </p>
+            <p class="update-list-center"><a href="’#’" target="’_blank’" title="’书的名字’">标题8</a>
+            <p class="update-list-right"><a href="’#’" class="update-writer" target="’_blank’"
+                                            title="’作者名’">作者8</a><span class="update-time">18-10-08</span></p>
+            </p>
+        </li>
+        <li>
+            <p class="update-list-left"><a href="’#’" target="’_blank’" title="’书的类别’">类型9《</a><a href="’#’"
+                                                                                                  target="’_blank’"
+                                                                                                  title="’书的名字’">书名9》</a>
+            </p>
+            <p class="update-list-center"><a href="’#’" target="’_blank’" title="’书的名字’">标题9</a>
+            <p class="update-list-right"><a href="’#’" class="update-writer" target="’_blank’"
+                                            title="’作者名’">作者9</a><span class="update-time">18-10-09</span></p>
+            </p>
+        </li>
+        <li>
+            <p class="update-list-left"><a href="’#’" target="’_blank’" title="’书的类别’">类型10《</a><a href="’#’"
+                                                                                                   target="’_blank’"
+                                                                                                   title="’书的名字’">书名10》</a>
+            </p>
+            <p class="update-list-center"><a href="’#’" target="’_blank’" title="’书的名字’">标题10</a>
+            <p class="update-list-right"><a href="’#’" class="update-writer" target="’_blank’"
+                                            title="’作者名’">作者10</a><span class="update-time">18-10-010</span></p>
+            </p>
+        </li>
+        <li>
+            <p class="update-list-left"><a href="’#’" target="’_blank’" title="’书的类别’">类型11《</a><a href="’#’"
+                                                                                                   target="’_blank’"
+                                                                                                   title="’书的名字’">书名11》</a>
+            </p>
+            <p class="update-list-center"><a href="’#’" target="’_blank’" title="’书的名字’">标题11</a>
+            <p class="update-list-right"><a href="’#’" class="update-writer" target="’_blank’"
+                                            title="’作者名’">作者11</a><span class="update-time">18-10-011</span></p>
+            </p>
+        </li>
+        <li>
+            <p class="update-list-left"><a href="’#’" target="’_blank’" title="’书的类别’">类型12《</a><a href="’#’"
+                                                                                                   target="’_blank’"
+                                                                                                   title="’书的名字’">书名12》</a>
+            </p>
+            <p class="update-list-center"><a href="’#’" target="’_blank’" title="’书的名字’">标题12</a>
+            <p class="update-list-right"><a href="’#’" class="update-writer" target="’_blank’"
+                                            title="’作者名’">作者12</a><span class="update-time">18-10-012</span></p>
+            </p>
+        </li>
+        <li>
+            <p class="update-list-left"><a href="’#’" target="’_blank’" title="’书的类别’">类型13《</a><a href="’#’"
+                                                                                                   target="’_blank’"
+                                                                                                   title="’书的名字’">书名13》</a>
+            </p>
+            <p class="update-list-center"><a href="’#’" target="’_blank’" title="’书的名字’">标题13</a>
+            <p class="update-list-right"><a href="’#’" class="update-writer" target="’_blank’"
+                                            title="’作者名’">作者13</a><span class="update-time">18-10-013</span></p>
+            </p>
+        </li>
+        <li>
+            <p class="update-list-left"><a href="’#’" target="’_blank’" title="’书的类别’">类型14《</a><a href="’#’"
+                                                                                                   target="’_blank’"
+                                                                                                   title="’书的名字’">书名14》</a>
+            </p>
+            <p class="update-list-center"><a href="’#’" target="’_blank’" title="’书的名字’">标题14</a>
+            <p class="update-list-right"><a href="’#’" class="update-writer" target="’_blank’"
+                                            title="’作者名’">作者14</a><span class="update-time">18-10-014</span></p>
+            </p>
+        </li>
+        <li>
+            <p class="update-list-left"><a href="’#’" target="’_blank’" title="’书的类别’">类型15《</a><a href="’#’"
+                                                                                                   target="’_blank’"
+                                                                                                   title="’书的名字’">书名15》</a>
+            </p>
+            <p class="update-list-center"><a href="’#’" target="’_blank’" title="’书的名字’">标题15</a>
+            <p class="update-list-right"><a href="’#’" class="update-writer" target="’_blank’"
+                                            title="’作者名’">作者15</a><span class="update-time">18-10-015</span></p>
+            </p>
+        </li>
+        <li>
+            <p class="update-list-left"><a href="’#’" target="’_blank’" title="’书的类别’">类型16《</a><a href="’#’"
+                                                                                                   target="’_blank’"
+                                                                                                   title="’书的名字’">书名16》</a>
+            </p>
+            <p class="update-list-center"><a href="’#’" target="’_blank’" title="’书的名字’">标题16</a>
+            <p class="update-list-right"><a href="’#’" class="update-writer" target="’_blank’"
+                                            title="’作者名’">作者16</a><span class="update-time">18-10-016</span></p>
+            </p>
+        </li>
+        <li>
+            <p class="update-list-left"><a href="’#’" target="’_blank’" title="’书的类别’">类型17《</a><a href="’#’"
+                                                                                                   target="’_blank’"
+                                                                                                   title="’书的名字’">书名17》</a>
+            </p>
+            <p class="update-list-center"><a href="’#’" target="’_blank’" title="’书的名字’">标题17</a>
+            <p class="update-list-right"><a href="’#’" class="update-writer" target="’_blank’"
+                                            title="’作者名’">作者17</a><span class="update-time">18-10-017</span></p>
+            </p>
+        </li>
+        <li>
+            <p class="update-list-left"><a href="’#’" target="’_blank’" title="’书的类别’">类型18《</a><a href="’#’"
+                                                                                                   target="’_blank’"
+                                                                                                   title="’书的名字’">书名18》</a>
+            </p>
+            <p class="update-list-center"><a href="’#’" target="’_blank’" title="’书的名字’">标题18</a>
+            <p class="update-list-right"><a href="’#’" class="update-writer" target="’_blank’"
+                                            title="’作者名’">作者18</a><span class="update-time">18-10-018</span></p>
+            </p>
+        </li>
+        <li>
+            <p class="update-list-left"><a href="’#’" target="’_blank’" title="’书的类别’">类型19《</a><a href="’#’"
+                                                                                                   target="’_blank’"
+                                                                                                   title="’书的名字’">书名19》</a>
+            </p>
+            <p class="update-list-center"><a href="’#’" target="’_blank’" title="’书的名字’">标题19</a>
+            <p class="update-list-right"><a href="’#’" class="update-writer" target="’_blank’"
+                                            title="’作者名’">作者19</a><span class="update-time">18-10-019</span></p>
+            </p>
+        </li>
+        <li>
+            <p class="update-list-left"><a href="’#’" target="’_blank’" title="’书的类别’">类型20《</a><a href="’#’"
+                                                                                                   target="’_blank’"
+                                                                                                   title="’书的名字’">书名20》</a>
+            </p>
+            <p class="update-list-center"><a href="’#’" target="’_blank’" title="’书的名字’">标题20</a>
+            <p class="update-list-right"><a href="’#’" class="update-writer" target="’_blank’"
+                                            title="’作者名’">作者20</a><span class="update-time">18-10-020</span></p>
+            </p>
+        </li>
+    </div>
+
+</div>
+
+<!--导入vue-->
+<script src="../static/js/vue.js"></script>
+<!--js-->
+<script>
+    // 将data单独分离分离出来
+    const datas = {
+        title:'条件判断',
+        message:'v-if 使用',
+        isShow:false,
+    };
+
+    const test = new Vue({
+        el:"#moe",// 约等于 原生JS的document.querySelector("#moe");
+        data: datas,
+        methods:{
+            doShow() {
+                this.isShow = !this.isShow
+            },
+        }
+    })
+</script>
+</body>
+</html>

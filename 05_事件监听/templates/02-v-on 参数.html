@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!--被vue管理的标签(作用域内)-->
+<div id="moe">
+    <h1>{{title}}</h1>
+    <h2>{{message}}</h2>
+    <h2>使用浏览器console来观察结果</h2>
+    <p>无参数函数，写括号和没括号的区别</p>
+    <button @click="bclick">测试按钮 bclick</button>
+    <button @click="bclick()">测试按钮 bclick()</button>
+    <hr>
+    <p>参数函数，写括号和没括号的区别</p>
+    <button @click="bclick2">测试按钮bclick2</button>
+    <button @click="bclick2()">测试按钮bclick2()</button>
+    <hr>
+    <p>需要event对象，同时还需要其他参数</p>
+    <button @click="bclick3('铃果',$event)">测试按钮bclick3() 参数：字符串+浏览器对象</button>
+    <button @click="bclick3(demo,$event)">测试按钮bclick3() 参数：变量+浏览器对象</button>
+    <br>
+    <button @click="bclick3(123,$event)">测试按钮bclick3() 参数：数字+浏览器对象</button>
+    <button @click="bclick3('123',$event)">测试按钮bclick3() 参数：数字(字符串数字)+浏览器对象</button>
+</div>
+
+<!--导入vue-->
+<script src="../static/js/vue.js"></script>
+<!--js-->
+<script>
+    // 将data单独分离分离出来
+    const datas = {
+        title:'事件监听',
+        message:'v-on 参数',
+        demo:"铃果",
+    };
+
+    const test = new Vue({
+        el:"#moe",// 约等于 原生JS的document.querySelector("#moe");
+        data: datas,
+        methods:{
+            bclick() {
+                console.log('btnClick');
+            },
+            bclick2(event) {
+                console.log('btnClick',event);
+            },
+            bclick3(valus,event) {
+                console.log(valus,event);
+            },
+        }
+    })
+</script>
+</body>
+</html>

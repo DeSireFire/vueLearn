@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!--被vue管理的标签(作用域内)-->
+<div id="moe">
+    <h1>{{title}}</h1>
+    <h2>{{message}}</h2>
+    <h2>使用浏览器console来观察结果</h2>
+    <div @click="divClick">
+        stop 修饰符，阻止冒泡的使用。避免点按钮的时候会触发父级标签的点击事件
+        <br>
+        <button @click.stop="bclick">测试按钮 stop</button>
+        <button @click="bclick">测试按钮</button>
+    </div>
+    <hr>
+    <p>prevent 修饰符 阻止默认submit提交</p>
+    <form action="www.bilibili.com">
+        <input type="submit" value="测试按钮 prevent" name="test" @click.prevent="submitClick">
+    </form>
+    <form action="www.bilibili.com">
+        <input type="submit" value="测试按钮" name="test" @click="submitClick">
+    </form>
+    <hr>
+    <p>keyup 修饰符 键盘动作监听</p>
+    <br>
+    <input type="text" @keyup="keyUp">
+    <br>
+    <p>keyup 修饰符 键盘动作监听 特定按键(回车)</p>
+    <br>
+    <input type="text" @keyup.enter="keyUp">
+    <hr>
+    <p>once 修饰符 只回调一次</p>
+    <br>
+    <button @click.once="onceClick">测试按钮 once</button>
+
+</div>
+
+<!--导入vue-->
+<script src="../static/js/vue.js"></script>
+<!--js-->
+<script>
+    // 将data单独分离分离出来
+    const datas = {
+        title:'事件监听',
+        message:'v-on 修饰符的使用',
+    };
+
+    const test = new Vue({
+        el:"#moe",// 约等于 原生JS的document.querySelector("#moe");
+        data: datas,
+        methods:{
+            bclick() {
+                console.log('btnClick');
+            },
+            divClick() {
+                console.log('divclick');
+            },
+            submitClick() {
+                console.log('submit');
+            },
+            keyUp() {
+                console.log('keyUp');
+            },
+            onceClick() {
+                console.log('onceClick');
+            },
+        }
+    })
+</script>
+</body>
+</html>

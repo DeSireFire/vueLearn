@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!--被vue管理的标签(作用域内)-->
+<div id="moe">
+    <h1>{{title}}</h1>
+    <h2>{{message}}</h2>
+    <button @click="loginSwitch">状态切换</button>
+<!--    <button @click="isUser = !isUser">状态切换</button>-->
+    <div v-if="isUser">
+        <label for="userName">账号: </label><input type="text" id="userName" placeholder="用户账号 无key属性时"><br>
+        <label for="pw1">密码: </label><input type="text" id="pw1" placeholder="用户密码"><br>
+    </div>
+    <div v-else="isUser">
+        <label for="email">邮箱: </label><input type="text" id="email" placeholder="用户电子邮箱 无key属性时"><br>
+        <label for="pw2">密码: </label><input type="text" id="pw2" placeholder="用户密码"><br>
+    </div>
+
+
+</div>
+
+<!--导入vue-->
+<script src="../static/js/vue.js"></script>
+<!--js-->
+<script>
+    // 将data单独分离分离出来
+    const datas = {
+        title:'条件判断',
+        message:'04-条件渲染-登录实践',
+        isUser:false,
+        users:[
+            {id: 0, name: "铃果", email: "100@qq.com", pw:"233"},
+            {id: 1, name: "柚一", email: "101@qq.com", pw:"233"},
+            {id: 2, name: "双荔", email: "102@qq.com", pw:"233"},
+            {id: 3, name: "山梨", email: "103@qq.com", pw:"233"},
+            {id: 4, name: "？", email: "104@qq.com", pw:"233"},
+            {id: 5, name: "莲雾", email: "105@qq.com", pw:"233"},
+        ],
+    };
+
+    const test = new Vue({
+        el:"#moe",// 约等于 原生JS的document.querySelector("#moe");
+        data: datas,
+        computed:{
+        },
+        methods:{
+            loginSwitch() {
+                this.isUser = !this.isUser
+            },
+
+        }
+    })
+</script>
+</body>
+</html>

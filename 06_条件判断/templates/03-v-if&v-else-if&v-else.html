@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!--被vue管理的标签(作用域内)-->
+<div id="moe">
+    <h1>{{title}}</h1>
+    <h2>{{message}}</h2>
+    <h2>分数：{{score}}</h2>
+    <button v-on:click="increment">+</button>
+    <button @click="decrement">-</button>
+
+    <p>使用条件渲染，比较笨重</p>
+    <div v-if="score>=90">
+        成绩：优秀
+    </div>
+    <div v-else-if="score>=80">成绩：良好</div>
+    <div v-else-if="score>=60">成绩：及格</div>
+    <div v-else-if="score<60">成绩：不及格</div>
+    <hr>
+    <p>使用computed,推荐</p>
+    <p>成绩：{{result}}</p>
+
+</div>
+
+<!--导入vue-->
+<script src="../static/js/vue.js"></script>
+<!--js-->
+<script>
+    // 将data单独分离分离出来
+    const datas = {
+        title:'条件判断',
+        message:'v-else-if 使用',
+        score:99,
+    };
+
+    const test = new Vue({
+        el:"#moe",// 约等于 原生JS的document.querySelector("#moe");
+        data: datas,
+        computed:{
+            result(){
+                let showMessage = "";
+                if (this.score >= 90){
+                    showMessage = "优秀"
+                } else if (this.score >= 80) {
+                    showMessage = "良好"
+                } else if (this.score >= 60) {
+                    showMessage = "及格"
+                } else if (this.score < 60) {
+                    showMessage = "不及格"
+                }
+                return showMessage
+            },
+        },
+        methods:{
+            increment() {
+                this.score++
+            },
+            decrement() {
+                this.score--
+            }
+        }
+    })
+</script>
+</body>
+</html>
