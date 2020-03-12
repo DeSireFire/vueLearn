@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!--被vue管理的标签(作用域内)-->
+<div id="moe">
+    <h1>{{title}}</h1>
+    <h2>{{message}}</h2>
+    <h3></h3>
+</div>
+
+<!--导入vue-->
+<script src="../static/js/vue.js"></script>
+<!--js-->
+<script>
+    // 将data单独分离分离出来
+    const datas = {
+        title:'计算属性',
+        message:'setter&&getter',
+        lastName:'铃果',
+        fistName:'codeEcho',
+    };
+
+    const test = new Vue({
+        el:"#moe",// 约等于 原生JS的document.querySelector("#moe");
+        data: datas,
+        // 计算属性 computed
+        computed: {
+            // 类似class中封装def
+            fullName:{
+                // set 方法监听fullName对象的赋值变化
+                // 浏览器 console 输入 app.fullName = "codeEcho 七柠" 来模拟赋值改变的操作
+                set: function (newValue) {
+                    const names = newValue.split(' ');
+                    this.firstName = names[0];
+                    this.firstName = names[1];
+                },
+                get: function () {
+                    return this.firstName + ' ' + this.lastName
+                }
+            }
+        },
+        methods:{},
+    })
+</script>
+</body>
+</html>

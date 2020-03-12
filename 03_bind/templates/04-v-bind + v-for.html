@@ -16,7 +16,9 @@
     <h1>{{title}}</h1>
     <h2>{{message}}</h2>
     <ul>
-        <li v-for="(i,index) in something" :class="getClass()"><a href="#" @click="colorAdd" :id="index">{{index}} {{i}}</a></li>
+        <li v-for="(i,index) in something" :class="getClass(index)" @click="colorAdd(index)">{{index}} {{i}}</li>
+        <hr>
+        <li v-for="(i,index) in something" :class="{hasColor:currentIndex === index}" @click="colorAdd(index)">{{index}} {{i}}</li>
     </ul>
 
 </div>
@@ -30,21 +32,19 @@
         title:'v-bind + v-for',
         message:'v-bind + v-for 绑定和循环的实践',
         something:['铃果','双荔','山梨','？','莲雾','陆桃','七柠','芭娜娜','橘九','时音'],
-        isColor:false
+        currentIndex:0,     // 记录谁变色
     };
 
     const test = new Vue({
         el:"#moe",// 约等于 原生JS的document.querySelector("#moe");
         data: datas,
+
         methods:{
-            getClass:function () {
-                return {hasColor:this.isColor}
+            getClass:function (index) {
+                return {hasColor:this.currentIndex === index}
             },
-            colorAdd:function () {
-                let id = document.querySelector("#"+this.index);
-                if (id = this.index){
-                this.isColor = !this.isColor
-                }
+            colorAdd:function (index) {
+                this.currentIndex = index
             }
         }
     })
