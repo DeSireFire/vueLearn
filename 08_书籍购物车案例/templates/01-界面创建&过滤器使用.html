@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!--被vue管理的标签(作用域内)-->
+<div id="moe">
+    <h1>{{title}}</h1>
+    <h2>{{message}}</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>书名</th>
+                <th>出版日期</th>
+                <th>价格</th>
+                <th>购买数量</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+        <tr v-for="item in books">
+<!--            <td v-for="value in item">{{value}}</td>-->
+            <td>{{item.id}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.date}}</td>
+            <td>{{item.price | showPrice}}</td>
+<!--            <td>{{item.price}}</td>-->
+            <td>
+                <button @click="">增加</button>
+                {{item.num}}
+                <button @click="">减少</button>
+            </td>
+            <td><button @click="">移除</button></td>
+        </tr>
+        </tbody>
+    </table>
+    <hr>
+    <h3>总价格：</h3>
+</div>
+
+<!--导入vue-->
+<script src="../static/js/vue.js"></script>
+<!--js-->
+<script>
+    // 将data单独分离分离出来
+    const datas = {
+        title:'实例开发',
+        message:'书籍购物',
+        books:[
+            {id: 0, name: "铃果", date:"10.21", price: 100, num:233},
+            {id: 1, name: "柚一", date:"10.21", price: 101, num:233},
+            {id: 2, name: "双荔", date:"10.21", price: 102, num:233},
+            {id: 3, name: "山梨", date:"10.21", price: 103, num:233},
+            {id: 4, name: "？", date:"10.21", price: 104, num:233},
+            {id: 5, name: "莲雾", date:"10.21", price: 105, num:233},
+        ],
+    };
+
+    const test = new Vue({
+        el:"#moe",// 约等于 原生JS的document.querySelector("#moe");
+        data: datas,
+        methods:{},
+        filters:{
+            // 价格合计
+            showPrice(price) {
+                return '￥'+ price.toFixed(2)
+            },
+        },
+    })
+</script>
+</body>
+</html>

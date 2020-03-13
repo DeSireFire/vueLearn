@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!--被vue管理的标签(作用域内)-->
+<div id="moe">
+    <h1>{{title}}</h1>
+    <h2>{{message}}</h2>
+<!--    <button @click="doShow">显示切换  v-if</button>-->
+
+    <h3>数组遍历</h3>
+    <p>无下标值</p>
+    <ul>
+        <li v-for="item in users">{{item}}</li>
+    </ul>
+    <hr>
+    <p>有下标值</p>
+    <ul>
+        <li v-for="(item,i) in users">索引：{{i}} 内容：{{item}}</li>
+    </ul>
+
+    <ul>
+        <li v-for="(item,i) in users">计算后索引：{{i+1}} 内容：{{item}}</li>
+    </ul>
+    <hr>
+
+
+</div>
+
+<!--导入vue-->
+<script src="../static/js/vue.js"></script>
+<!--js-->
+<script>
+    // 将data单独分离分离出来
+    const datas = {
+        title:'循环遍历',
+        message:'v-for 数组遍历',
+        users:['铃果','柚一','双荔'],
+    };
+
+    const test = new Vue({
+        el:"#moe",// 约等于 原生JS的document.querySelector("#moe");
+        data: datas,
+        methods:{
+            doShow() {
+                this.isShow = !this.isShow
+            },
+        }
+    })
+</script>
+</body>
+</html>

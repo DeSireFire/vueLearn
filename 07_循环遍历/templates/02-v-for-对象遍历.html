@@ -10,13 +10,35 @@
 <div id="moe">
     <h1>{{title}}</h1>
     <h2>{{message}}</h2>
-    <button @click="Switch">状态切换</button>
-    <p>v-if 不为真时，html都不会存在</p>
-    <div v-if="isShow" id="miao">v-if:铃果</div>
+<!--    <button @click="doShow">显示切换  v-if</button>-->
+
+    <h3>对象遍历</h3>
+    <p>只遍历键值对中的值</p>
+    <p>v-for="item in user"</p>
+    <ul>
+        <li v-for="item in user">{{item}}</li>
+    </ul>
     <hr>
-    <p>v-show 相当于给标签添加display none样式。但是html代码是存在的</p>
-    <p>如果时涉及频繁切换的话推荐使用v-show</p>
-    <div v-show="isShow" id="nya">v-if:七柠</div>
+    <p>注意！与python一些语言不同，vue的循环，值在键前面。 </p>
+    <p>v-for="(value, key) in user"</p>
+    <ul>
+        <li v-for="(value, key) in user">{{key}}:{{value}}</li>
+    </ul>
+    <hr>
+    <p>遍历字典，且获取索引值</p>
+    <p>v-for="(value, key,index) in user"</p>
+    <ul>
+        <li v-for="(value, key,index) in user">{{index}}--{{key}}:{{value}}</li>
+    </ul>
+    <hr>
+    <p>遍历数组嵌套对象取值</p>
+    <p v-pre>v-for="item in user"  {{item.name}}</p>
+    <ul>
+        <li v-for="item in users">
+            {{item.name}}
+        </li>
+    </ul>
+
 
 </div>
 
@@ -26,9 +48,9 @@
 <script>
     // 将data单独分离分离出来
     const datas = {
-        title:'条件判断',
-        message:'06-v-show',
-        isShow:false,
+        title:'循环遍历',
+        message:'v-for 对象遍历',
+        user:{id: 0, name: "橘九", email: "100@qq.com", pw:"233"},
         users:[
             {id: 0, name: "铃果", email: "100@qq.com", pw:"233"},
             {id: 1, name: "柚一", email: "101@qq.com", pw:"233"},
@@ -42,14 +64,10 @@
     const test = new Vue({
         el:"#moe",// 约等于 原生JS的document.querySelector("#moe");
         data: datas,
-        isShow:false,
-        computed:{
-        },
         methods:{
-            Switch() {
+            doShow() {
                 this.isShow = !this.isShow
             },
-
         }
     })
 </script>

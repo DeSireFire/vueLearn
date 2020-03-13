@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!--被vue管理的标签(作用域内)-->
+<div id="moe">
+    <h1>{{title}}</h1>
+    <h2>{{message}}</h2>
+    <!--    <button @click="doShow">显示切换  v-if</button>-->
+
+    <h3>数组遍历</h3>
+    <p>添加key，提高数组元素追加时的性能</p>
+    <p>在索引2的位置插入“666”字符串：</p>
+    <p>console: moe.users.splice(2, 0, "666")</p>
+    <p>splice作用多，插入，删除，替换 </p>
+    <p>参数简单说明：splice([选取索引起始的位置],[修改数量],[在选取的位置要插入/替换的内容,留空为删除]..)</p>
+    <button @click="btnInsert">中间插入</button>
+    <hr>
+    <p>末尾添加新元素：</p>
+    <p>console: moe.users.push("666")</p>
+    <button @click="btnAdd">末尾添加</button>
+    <ul>
+        <li v-for="(item,i) in users" :key="i">索引：{{i}} 内容：{{item}}</li>
+    </ul>
+    <hr>
+    <h3>
+        除了splice和push方法，其他可用方法还有很多
+    </h3>
+    <p>
+        弹出(删除)：pop(),
+        删除(第一个元素)：shift(),
+        删除(最末个元素)：unshift(),
+        排序：sort(),
+        反转：reverse(),
+    </p>
+    <hr>
+    <h3>使用vue set 方法修改</h3>
+    <button @click="btnVueSet">修改元素</button>
+
+</div>
+
+<!--导入vue-->
+<script src="../static/js/vue.js"></script>
+<!--js-->
+<script>
+
+    // 将data单独分离分离出来
+    const datas = {
+        title:'循环遍历',
+        message:'v-for 数组遍历 添加key和数组动态操作',
+        users:['铃果','柚一','双荔','山梨','？','莲雾'],
+    };
+
+    const test = new Vue({
+        el:"#moe",// 约等于 原生JS的document.querySelector("#moe");
+        data: datas,
+        methods:{
+            btnAdd() {
+                this.users.push("七柠","莲雾")
+            },
+            btnInsert() {
+                this.users.splice(2,0,"橘九")
+            },
+            btnVueSet() {
+                Vue.set(this.users,4,'新人？')
+            },
+        }
+    })
+</script>
+</body>
+</html>
