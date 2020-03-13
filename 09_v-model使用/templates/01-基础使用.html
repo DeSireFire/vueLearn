@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!--被vue管理的标签(作用域内)-->
+<div id="moe">
+    <h1>{{title}}</h1>
+    <h2>{{message}}</h2>
+    <p>方便快速的双向绑定，修改一个地方的内容，另一个地方马上跟进</p>
+    <p><input type="text" v-model="info"><-- 往这里面写东西！</p>
+    <p>{{info}}</p>
+</div>
+
+<!--导入vue-->
+<script src="../static/js/vue.js"></script>
+<!--js-->
+<script>
+    // 将data单独分离分离出来
+    const datas = {
+        title:'v-model',
+        message:'v-model 基础使用',
+        info:'从前有座山，山里有个铃果，在跟一枚人形柠檬去摘芭娜娜。突然咣当一声，一棵树上掉下来好大一坨山梨击中七柠。铃果看着旁边昏厥的七柠，露出震惊的神情，下意识抬头去看。',
+    };
+
+    const test = new Vue({
+        el:"#moe",// 约等于 原生JS的document.querySelector("#moe");
+        data: datas,
+        methods:{},
+    })
+</script>
+</body>
+</html>

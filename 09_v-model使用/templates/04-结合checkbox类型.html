@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!--被vue管理的标签(作用域内)-->
+<div id="moe">
+    <h1>{{title}}</h1>
+    <h2>{{message}}</h2>
+    <p>单选框</p>
+    <label for="agree">
+        <input type="checkbox" id="agree" v-model="isAgree"> 同意协议
+    </label>
+    <h2>你是否同意：{{isAgree}}</h2>
+    <hr>
+    <p>多选框</p>
+    <input type="checkbox" value="篮球" v-model="sport"> 篮球
+    <input type="checkbox" value="足球" v-model="sport"> 足球
+    <input type="checkbox" value="羽毛球" v-model="sport"> 羽毛球
+    <h2>你的爱好有：{{sport}}</h2>
+</div>
+
+<!--导入vue-->
+<script src="../static/js/vue.js"></script>
+<!--js-->
+<script>
+    // 将data单独分离分离出来
+    const datas = {
+        title:'v-model',
+        message:'v-model 结合checkbox',
+        isAgree:false,
+        sport:["篮球","足球","羽毛球"],
+    };
+
+    const test = new Vue({
+        el:"#moe",// 约等于 原生JS的document.querySelector("#moe");
+        data: datas,
+        methods:{
+            valueChange(event){
+                this.info = event.target.value;
+            }
+        },
+    })
+</script>
+</body>
+</html>

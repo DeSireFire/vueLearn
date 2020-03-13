@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!--被vue管理的标签(作用域内)-->
+<div id="moe">
+    <h1>{{title}}</h1>
+    <h2>{{message}}</h2>
+    <label for="male">
+        <input type="radio" id="male" name="sex" value="男" v-model="sex">男
+    </label>
+    <label for="male">
+        <input type="radio" id="famale" name="sex" value="女" v-model="sex">女
+    </label>
+    <h2>你选择的性别是：{{sex}}</h2>
+</div>
+
+<!--导入vue-->
+<script src="../static/js/vue.js"></script>
+<!--js-->
+<script>
+    // 将data单独分离分离出来
+    const datas = {
+        title:'v-model',
+        message:'v-model 结合radio',
+        sex:'男',
+    };
+
+    const test = new Vue({
+        el:"#moe",// 约等于 原生JS的document.querySelector("#moe");
+        data: datas,
+        methods:{
+            valueChange(event){
+                this.info = event.target.value;
+            }
+        },
+    })
+</script>
+</body>
+</html>
