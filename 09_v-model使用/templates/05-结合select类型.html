@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!--被vue管理的标签(作用域内)-->
+<div id="moe">
+    <h1>{{title}}</h1>
+    <h2>{{message}}</h2>
+    <p>下拉菜单</p>
+    <select name="codeEcho" id="" v-model="codeEcho">
+        <option value="铃果">铃果</option>
+        <option value="柚一">柚一</option>
+        <option value="双荔">双荔</option>
+        <option value="山梨">山梨</option>
+        <option value="？？">？？</option>
+        <option value="莲雾">莲雾</option>
+        <option value="陆桃">陆桃</option>
+        <option value="七柠">七柠</option>
+        <option value="芭娜娜">芭娜娜</option>
+        <option value="橘九">橘九</option>
+        <option value="时音">时音</option>
+    </select>
+    <h2>你的选择的是：{{codeEcho}}</h2>
+
+</div>
+
+<!--导入vue-->
+<script src="../static/js/vue.js"></script>
+<!--js-->
+<script>
+    // 将data单独分离分离出来
+    const datas = {
+        title:'v-model',
+        message:'v-model 结合select',
+        codeEcho:"铃果",
+    };
+
+    const test = new Vue({
+        el:"#moe",// 约等于 原生JS的document.querySelector("#moe");
+        data: datas,
+        methods:{
+            valueChange(event){
+                this.info = event.target.value;
+            }
+        },
+    })
+</script>
+</body>
+</html>

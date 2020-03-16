@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!--被vue管理的标签(作用域内)-->
+<div id="moe">
+    <h1>{{title}}</h1>
+    <h2>{{message}}</h2>
+    <p> v-model.lazy</p>
+    <p><input type="text" v-model.lazy="info"><-- 往这里面写东西！</p>
+    <p>内容是：{{info}}</p>
+    <p>变量类型是：{{typeof info}}</p>
+    <hr>
+    <p> v-model.number 动态绑定的值类型就是数字（默认是字符串）</p>
+    <p><input type="number" v-model.number="info2"><-- 往这里面写东西！</p>
+    <p>内容是：{{info2}}</p>
+    <p>变量类型是：{{typeof info2}}</p>
+    <hr>
+    <p> v-model.trim 首尾空格清洗</p>
+    <p> moe.info3 在浏览器控制台中console中查看info3的值已经把首位的空格去除</p>
+    <p><input type="text" v-model.trim="info3"><-- 往这里面写东西！</p>
+    <p>内容是：{{info3}}</p>
+    <p>变量类型是：{{typeof info3}}</p>
+</div>
+
+<!--导入vue-->
+<script src="../static/js/vue.js"></script>
+<!--js-->
+<script>
+    // 将data单独分离分离出来
+    const datas = {
+        title:'v-model',
+        message:'v-model 修饰符',
+        info:'铃果这是个天才。',
+        info2:0,
+        info3:"     只因    铃果太美    ",
+    };
+    const test = new Vue({
+        el:"#moe",// 约等于 原生JS的document.querySelector("#moe");
+        data: datas,
+        methods:{},
+    })
+</script>
+</body>
+</html>
