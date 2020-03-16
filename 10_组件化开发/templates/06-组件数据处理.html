@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .colorArea {
+            border-style:groove;
+            border-width:5px;
+        }
+        .colorArea2 {
+            background-color: aqua;
+        }
+    </style>
+</head>
+<body>
+
+<!--被vue管理的标签(作用域内)-->
+<div id="moe">
+    <h1>{{title}}</h1>
+    <h2>{{message}} moe</h2>
+    <hr>
+    <p>模板外面的subtitle：{{subtitle}}</p>
+    <cpn></cpn>
+
+</div>
+
+<template id="cpn">
+    <div class="colorArea">
+        <h2>模板里面的{{变量}}只能在模板中渲染</h2>
+        <h2>可以观察到主datas变量中的subtitle变量并没有渲染到模板当中</h2>
+        <h2>模板里面的subtitle：{{subtitle}}</h2>
+        <img src="http://q2.qlogo.cn/headimg_dl?dst_uin=1615259006&spec=100" alt="">
+    </div>
+</template>
+
+<!--导入vue-->
+<script src="../static/js/vue.js"></script>
+<!--js-->
+<script>
+    // 全局组件语法糖
+    Vue.component('cpn',{
+        template:'#cpn',
+        data(){
+            return {
+                subtitle:'嘿嘿',
+            }
+        },
+    });
+
+    // 将data单独分离分离出来
+    const datas = {
+        title:'组件化',
+        message:'组件模板分离',
+        subtitle:'emmmmm',
+    };
+
+    const app = new Vue({
+        el:"#moe",// 约等于 原生JS的document.querySelector("#moe");
+        data: datas,
+        methods:{},
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .colorArea {
+            border-style:groove;
+            border-width:5px;
+        }
+        .colorArea2 {
+            background-color: aqua;
+        }
+    </style>
+</head>
+<body>
+
+<!--被vue管理的标签(作用域内)-->
+<div id="moe">
+    <h1>{{title}}</h1>
+    <h2>{{message}} moe</h2>
+    <p>全局组件语法糖</p>
+    <cpn-global></cpn-global>
+    <hr>
+    <p>局部组件语法糖</p>
+    <cpn-local></cpn-local>
+</div>
+
+<!--导入vue-->
+<script src="../static/js/vue.js"></script>
+<!--js-->
+<script>
+    // 全局组件语法糖
+    Vue.component('cpn-global',{
+        template:`
+        <div class="colorArea">
+            <h2>组件</h2>
+            <h2>需要对比JS代码观察</h2>
+            <img src="http://q2.qlogo.cn/headimg_dl?dst_uin=1615259006&spec=100" alt="">
+            <cpn1></cpn1>
+        </div>
+        `,});
+
+    // 将data单独分离分离出来
+    const datas = {
+        title:'组件化',
+        message:'组件语法糖',
+    };
+
+    const app = new Vue({
+        el:"#moe",// 约等于 原生JS的document.querySelector("#moe");
+        data: datas,
+        methods:{},
+        // 局部组件注册语法糖
+        components:{
+            'cpn-local':{
+            template:`
+                <div class="colorArea">
+                    <h2>组件</h2>
+                    <h2>需要对比JS代码观察</h2>
+                    <img src="http://q2.qlogo.cn/headimg_dl?dst_uin=1615259006&spec=100" alt="">
+                    <cpn1></cpn1>
+                </div>
+                `
+            },
+        }
+    });
+</script>
+</body>
+</html>

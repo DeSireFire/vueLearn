@@ -2,7 +2,7 @@
 学习Vue前端框架的练习代码
 
 ## 教程地址
-讲师: coderwhy001  
+讲师: [coderwhy001](https://github.com/coderwhy)
 up主: ilovecoding
 > https://www.bilibili.com/video/av89760569
 

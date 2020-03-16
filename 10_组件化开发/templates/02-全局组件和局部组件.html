@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!--被vue管理的标签(作用域内)-->
+<div id="moe">
+    <h1>{{title}}</h1>
+    <h2>{{message}} moe</h2>
+    <hr>
+    <p>全局组件</p>
+    <p>全局组件，在所有vue实例下都能使用</p>
+    <my-cpn></my-cpn>
+    <hr>
+    <p>局部组件</p>
+    <p>局部组件，只能在对应的vue实例才能被渲染</p>
+    <cpn></cpn>
+</div>
+<hr>
+<hr>
+<hr>
+<div id="nya">
+    <h1>{{title}}</h1>
+    <h2>{{message}} nya</h2>
+    <p>全局组件，在所有vue实例下都能使用</p>
+    <my-cpn></my-cpn>
+    <hr>
+    <p>局部组件，只能在对应的vue实例才能被渲染</p>
+    <cpn></cpn>
+</div>
+
+<!--导入vue-->
+<script src="../static/js/vue.js"></script>
+<!--js-->
+<script>
+    // 创建组件构造器对象
+    const cpnC = Vue.extend({
+        template:`
+        <div>
+            <img src="http://q2.qlogo.cn/headimg_dl?dst_uin=3536656010&spec=100" alt="">
+            <img src="https://i.loli.net/2020/03/16/DXIQJ8norAaLOe9.jpg" alt="">
+            <img src="http://q2.qlogo.cn/headimg_dl?dst_uin=1025212779&spec=100" alt="">
+        </div>
+        `,
+    });
+    // 注册组件
+    // 不支持自定义标签有大小写
+    Vue.component('my-cpn',cpnC);
+
+    // 将data单独分离分离出来
+    const datas = {
+        title:'组件化',
+        message:'全局组件和局部组件',
+    };
+
+    const app1 = new Vue({
+        el:"#moe",// 约等于 原生JS的document.querySelector("#moe");
+        data: datas,
+        methods:{},
+    });
+    const app2 = new Vue({
+        el:"#nya",// 约等于 原生JS的document.querySelector("#moe");
+        data: datas,
+        methods:{},
+        components:{
+            // 对应组件的标签名：组件变量名
+            cpn:cpnC
+        }
+    });
+</script>
+</body>
+</html>

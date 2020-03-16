@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .colorArea {
+            border-style:groove;
+            border-width:5px;
+        }
+        .colorArea2 {
+            background-color: aqua;
+        }
+    </style>
+</head>
+<body>
+
+<!--父组件模板-->
+<div id="moe">
+    <h1>{{title}}</h1>
+    <h2>{{message}}</h2>
+    <p>需打开浏览器consle控制台进行对比</p>
+    <h2 >父组件的num1:{{num1}}</h2>
+    <h2>父组件的num2:{{num2}}</h2>
+    <cpn :number1="num1" :number2="num2" @num1change="num1change" @num2change="num2change"></cpn>
+</div>
+
+<!--子组件模板-->
+<template id="cpn">
+    <div class="colorArea2">
+        <h2>使用双向绑定</h2>
+        <h2>props-number1:{{number1}}</h2>
+        <input type="text" v-model="number1">
+        <h2>props-number2:{{number2}}</h2>
+        <input type="text" v-model="number2">
+        <hr>
+        <h2>data返回的方式绑定</h2>
+        <h2>data-number1:{{dnnumber1}}</h2>
+        <input type="text" :value="dnnumber1" @input="num1input">
+        <h2>data-number2:{{dnnumber2}}</h2>
+        <input type="text" :value="dnnumber2" @input="num2input">
+
+    </div>
+</template>
+
+<!--导入vue-->
+<script src="../static/js/vue.js"></script>
+<!--js-->
+<script>
+    //子组件
+
+    // 将data单独分离分离出来
+    const datas = {
+        title:'组件化',
+        message:'父子组件通信案例(双向绑定)',
+        num1:1,
+        num2:0,
+    };
+    // 父组件
+    const app = new Vue({
+        el:"#moe",// 约等于 原生JS的document.querySelector("#moe");
+        data: datas,
+        methods:{
+            num1change(value){
+                // 类型转换
+                this.num1 = parseInt(value);
+
+            },
+            num2change(value){
+                this.num2 = parseInt(value);
+            },
+        },
+        // 模板的标签名称
+        components:{
+            cpn:{
+                template:'#cpn',
+                props:{
+                    // 不建议直接绑定v-model
+                    number1:Number,
+                    number2:Number,
+                },
+                methods: {
+                    // 模拟相互影响
+                    num1input(event){
+                        // 获取局部组件中的值
+                        this.dnnumber1 = event.target.value;
+                        // 把局部组件的值发射出去
+                        this.$emit('num1change',this.dnnumber1);
+
+                        // 对这个该值进行处理
+                        this.dnnumber2 = this.dnnumber1 * 100;
+                        // 把局部组件的值发射出去
+                        this.$emit('num2change',this.dnnumber2);
+                    },
+                    num2input(event){
+                        this.dnnumber2 = event.target.value;
+                        this.$emit('num2change',this.dnnumber2);
+
+                        // 对这个该值进行处理
+                        this.dnnumber1 = this.dnnumber2 / 100;
+                        // 把局部组件的值发射出去
+                        this.$emit('num1change',this.dnnumber1);
+                    },
+                },
+                data(){
+                    return {
+                        // 推荐使用 data或者computed 返回值来绑定v-model
+                        dnnumber1:this.number1,
+                        dnnumber2:this.number2,
+                    }
+                },
+            },
+        },
+    });
+</script>
+</body>
+</html>

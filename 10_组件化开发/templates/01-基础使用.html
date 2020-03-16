@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!--被vue管理的标签(作用域内)-->
+<div id="moe">
+    <h1>{{title}}</h1>
+    <h2>{{message}}</h2>
+    <p>1.创建组件构造器对象</p>
+    <p>2.注册组件</p>
+    <p>3.使用组件</p>
+    <hr>
+    <my-cpn></my-cpn>
+    <my-cpn></my-cpn>
+</div>
+
+<!--导入vue-->
+<script src="../static/js/vue.js"></script>
+<!--js-->
+<script>
+    // 扩展ES6
+    // 多行字符串 ` 符号
+    const linesStr = `
+    窗前明月光，
+    窗前明月光，
+    窗前明月光，
+    窗前明月光，
+    `;
+
+    // 创建组件构造器对象
+    const cpnC = Vue.extend({
+        template:`
+            <ul>
+                <li>铃果 so sexy</li>
+                <li>铃果 so sexy</li>
+                <li>铃果 so sexy</li>
+                <li>铃果 so sexy</li>
+                <li>铃果 so sexy</li>
+            </ul>
+            <img src="http://q2.qlogo.cn/headimg_dl?dst_uin=519418441&spec=100" alt="">
+            <img src="https://i.loli.net/2020/03/16/DXIQJ8norAaLOe9.jpg" alt="">
+            <img src="http://q2.qlogo.cn/headimg_dl?dst_uin=1025212779&spec=100" alt="">
+
+        `,
+    });
+    // 注册组件
+    // 不支持自定义标签有大小写
+    Vue.component('my-cpn',cpnC);
+
+    // 将data单独分离分离出来
+    const datas = {
+        title:'组件化',
+        message:'基础使用',
+    };
+
+    const test = new Vue({
+        el:"#moe",// 约等于 原生JS的document.querySelector("#moe");
+        data: datas,
+        methods:{},
+    })
+</script>
+</body>
+</html>

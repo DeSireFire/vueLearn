@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .colorArea {
+            border-style:groove;
+            border-width:5px;
+        }
+        .colorArea2 {
+            background-color: aqua;
+        }
+    </style>
+</head>
+<body>
+
+<!--父组件模板-->
+<div id="moe">
+    <h1>{{title}}</h1>
+    <h2>{{message}}</h2>
+    <p>子组件传递数据到父组件使用$emit</p>
+    <cpnc @item-click="cpnClick"></cpnc>
+</div>
+
+<!--子组件模板-->
+<template id="cpnc">
+    <div class="colorArea2">
+        <button v-for="item in cates" @click="btnClick(item)">
+            {{item.name}}
+        </button>
+    </div>
+</template>
+
+<!--导入vue-->
+<script src="../static/js/vue.js"></script>
+<!--js-->
+<script>
+    //子组件
+    const childcpn = {
+        template:"#cpnc",
+        data(){
+            return {
+                cates:[
+                    {id: 0, name: "铃果", email: "100@qq.com", pw:"233"},
+                    {id: 1, name: "柚一", email: "101@qq.com", pw:"233"},
+                    {id: 2, name: "双荔", email: "102@qq.com", pw:"233"},
+                    {id: 3, name: "山梨", email: "103@qq.com", pw:"233"},
+                    {id: 4, name: "？", email: "104@qq.com", pw:"233"},
+                    {id: 5, name: "莲雾", email: "105@qq.com", pw:"233"},
+                ]
+            }
+        },
+        methods:{
+            btnClick(item){
+                // 向对应的父组件的发送item
+                this.$emit('item-click',item)
+            }
+        },
+    };
+
+    // 将data单独分离分离出来
+    const datas = {
+        title:'组件化',
+        message:'父子组件通信(子传父).',
+    };
+    // 父组件
+    const app = new Vue({
+        el:"#moe",// 约等于 原生JS的document.querySelector("#moe");
+        data: datas,
+        methods:{
+            cpnClick(item){
+                console.log('我是父组件的打印哦');
+                console.log(item);
+            },
+        },
+        // 模板的标签名称
+        components:{
+            cpnc:childcpn,
+        },
+    });
+</script>
+</body>
+</html>

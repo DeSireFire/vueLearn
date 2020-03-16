@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .colorArea {
+            border-style:groove;
+            border-width:5px;
+        }
+        .colorArea2 {
+            background-color: aqua;
+        }
+    </style>
+</head>
+<body>
+
+<!--被vue管理的标签(作用域内)-->
+<div id="moe">
+    <h1>{{title}}</h1>
+    <h2>{{message}} moe</h2>
+    <hr>
+    <cpn1></cpn1>
+    <cpn2></cpn2>
+
+</div>
+
+<!--第一种：组件模板-->
+<script type="text/x-template" id="cpn1">
+    <div class="colorArea">
+        <h2>第一种：组件分离</h2>
+        <h2>需要对比JS代码观察</h2>
+        <img src="http://q2.qlogo.cn/headimg_dl?dst_uin=1615259006&spec=100" alt="">
+    </div>
+</script>
+
+<!--第二种：组件模板-->
+<template id="cpn2">
+    <div class="colorArea">
+        <h2>第二种：组件分离</h2>
+        <h2>需要对比JS代码观察</h2>
+        <img src="http://q2.qlogo.cn/headimg_dl?dst_uin=1615259006&spec=100" alt="">
+    </div>
+</template>
+
+<!--导入vue-->
+<script src="../static/js/vue.js"></script>
+<!--js-->
+<script>
+    // 全局组件语法糖
+    Vue.component('cpn1',{
+        template:'#cpn1',
+    });
+    Vue.component('cpn2',{
+        template:'#cpn2',
+    });
+
+    // 将data单独分离分离出来
+    const datas = {
+        title:'组件化',
+        message:'组件模板分离',
+    };
+
+    const app = new Vue({
+        el:"#moe",// 约等于 原生JS的document.querySelector("#moe");
+        data: datas,
+        methods:{},
+    });
+</script>
+</body>
+</html>

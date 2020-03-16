@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .colorArea {
+            border-style:groove;
+            border-width:5px;
+        }
+        .colorArea2 {
+            background-color: aqua;
+        }
+    </style>
+</head>
+<body>
+
+<!--被vue管理的标签(作用域内)-->
+<div id="moe">
+    <h1>{{title}}</h1>
+    <h2>{{message}}</h2>
+    <p>父组件传递数据到子组件使用props</p>
+    <p>子模版渲染变量千万别有大写字母</p>
+    <p2c v-bind:ccodeecho="ccodeEcho" :cdemo="demo" :cinfo="infos"></p2c>
+    <p>子组件传递数据到父组件使用</p>
+
+</div>
+
+<template id="cpn">
+    <div class="colorArea">
+        <h2>{{ccodeecho}}</h2>
+        <h2>{{cdemo}}</h2>
+        <h2>{{cinfo}}</h2>
+    </div>
+</template>
+
+<!--导入vue-->
+<script src="../static/js/vue.js"></script>
+<!--js-->
+<script>
+    //父传子 props
+    const p2c = {
+        template:"#cpn",
+        // 数组写法
+        // props:['ccodeecho','cdemo'],
+        // 对象写法，可以限制数据类型和默认值
+        props:{
+            ccodeecho:Array,
+            cdemo:{
+                type:Object,
+                default(){
+                    return {}
+                }
+            },
+            // 设置类型，并设置默认值
+            cinfo:{
+                type:String,
+                default:'这是默认值',
+                // 为真时，表示必须传递的值，否者报错
+                required:true,
+            },
+        },
+        data(){
+            return {}
+        },
+    };
+
+    // 将data单独分离分离出来
+    const datas = {
+        title:'组件化',
+        message:'父子组件通信(父传子).',
+        ccodeEcho:['铃果','柚一','双荔'],
+        demo:{name1:'山梨',name2:'？？',name3:'莲雾'},
+        infos:'这是一个字符串语句。'
+    };
+
+    const app = new Vue({
+        el:"#moe",// 约等于 原生JS的document.querySelector("#moe");
+        data: datas,
+        methods:{},
+        // 模板的标签名称
+        components:{
+            p2c
+        },
+    });
+</script>
+</body>
+</html>

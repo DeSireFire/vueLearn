@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .colorArea {
+            border-style:groove;
+            border-width:5px;
+        }
+        .colorArea2 {
+            background-color: aqua;
+        }
+    </style>
+</head>
+<body>
+
+<!--被vue管理的标签(作用域内)-->
+<div id="moe">
+    <h1>{{title}}</h1>
+    <h2>{{message}} moe</h2>
+    <p>组件套娃</p>
+    <hr>
+    <cpn2></cpn2>
+</div>
+
+<!--导入vue-->
+<script src="../static/js/vue.js"></script>
+<!--js-->
+<script>
+    // 创建组件构造器对象
+    const cpnC1 = Vue.extend({
+        template:`
+        <div class="colorArea2">
+            <h2>子组件</h2>
+            <img src="http://q2.qlogo.cn/headimg_dl?dst_uin=1025212779&spec=100" alt="">
+        </div>
+        `,
+    });
+    const cpnC2 = Vue.extend({
+        template:`
+        <div class="colorArea">
+            <h2>父组件</h2>
+            <img src="http://q2.qlogo.cn/headimg_dl?dst_uin=1615259006&spec=100" alt="">
+            <cpn1></cpn1>
+        </div>
+        `,
+        components:{
+            // 子组件注册
+            cpn1:cpnC1,
+        },
+    });
+
+    // 将data单独分离分离出来
+    const datas = {
+        title:'组件化',
+        message:'父子组件',
+    };
+
+    const app = new Vue({
+        el:"#moe",// 约等于 原生JS的document.querySelector("#moe");
+        data: datas,
+        methods:{},
+        components:{
+            // 对应组件的标签名：组件变量名
+            cpn2:cpnC2
+        }
+    });
+</script>
+</body>
+</html>
