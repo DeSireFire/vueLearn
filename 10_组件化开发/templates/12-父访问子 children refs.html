@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!--被vue管理的标签(作用域内)-->
+<div id="moe">
+    <h1>{{title}}</h1>
+    <h2>{{message}}</h2>
+    <cpn></cpn>
+    <cpn></cpn>
+    <cpn ref="demo"></cpn>
+    <button @click="btnClick">按钮</button>
+    <button @click="btnClickRefs">refs按钮</button>
+</div>
+
+<template id="cpn">
+    <div>
+        <ul>
+            <li>铃果 so sexy</li>
+            <li>铃果 so sexy</li>
+            <li>铃果 so sexy</li>
+            <li>铃果 so sexy</li>
+            <li>铃果 so sexy</li>
+        </ul>
+    </div>
+</template>
+
+<!--导入vue-->
+<script src="../static/js/vue.js"></script>
+<!--js-->
+<script>
+    // 将data单独分离分离出来
+    const datas = {
+        title:'组件化',
+        message:'父访问子',
+    };
+
+    const test = new Vue({
+        el:"#moe",// 约等于 原生JS的document.querySelector("#moe");
+        data: datas,
+        methods:{
+            btnClick(){
+                console.log(this.$children);
+                for (let c of this.$children){
+                    console.log(c.name);
+                    c.showMessage();
+                }
+            },
+            btnClickRefs(){
+                // $refs 对象类型，默认是一个空的对象
+                console.log(this.$refs.demo.name);
+            },
+        },
+        components:{
+            cpn:{
+                template:"#cpn",
+                methods: {
+                    showMessage(){
+                        console.log('showMessage');
+                    }
+                },
+                data(){
+                    return {
+                        name:'我是子组件'
+                    }
+                },
+            },
+        },
+    })
+</script>
+</body>
+</html>

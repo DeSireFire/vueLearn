@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!--被vue管理的标签(作用域内)-->
+<div id="moe">
+    <h1>{{title}}</h1>
+    <h2>{{message}}</h2>
+    <p>cpn里面isShow作用不到父级作用域</p>
+    <cpn v-show="isShow"></cpn>
+</div>
+
+<template id="cpn">
+    <div>
+        <h3>我子是组件</h3>
+    </div>
+</template>
+
+<!--导入vue-->
+<script src="../static/js/vue.js"></script>
+<!--js-->
+<script>
+    // 将data单独分离分离出来
+    const datas = {
+        title:'slot 插槽',
+        message:'编译作用域',
+        isShow:true,
+    };
+
+    const test = new Vue({
+        el:"#moe",// 约等于 原生JS的document.querySelector("#moe");
+        data: datas,
+        methods:{},
+        components:{
+            cpn:{
+                template:'#cpn',
+                data(){
+                    return {isShow:false}
+                },
+            },
+        },
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!--被vue管理的标签(作用域内)-->
+<div id="moe">
+    <h1>{{title}}</h1>
+    <h2>{{message}}</h2>
+    <p>插槽是为了让组件更具有拓展性</p>
+    <cpn><button>美丽的按钮</button></cpn>
+    <cpn><span>holyShit</span></cpn>
+    <cpn>
+        <span>holyShit</span>
+        <p>p元素</p>
+        <div>
+            <span>嵌套测试</span>
+        </div>
+    </cpn>
+    <cpn></cpn>
+</div>
+
+<template id="cpn">
+    <div>
+        <h3>我是组件</h3>
+        <!--设置默认值-->
+        <slot>我是默认值</slot>
+    </div>
+</template>
+
+<!--导入vue-->
+<script src="../static/js/vue.js"></script>
+<!--js-->
+<script>
+    // 将data单独分离分离出来
+    const datas = {
+        title:'slot 插槽',
+        message:'基础使用',
+    };
+
+    const test = new Vue({
+        el:"#moe",// 约等于 原生JS的document.querySelector("#moe");
+        data: datas,
+        methods:{},
+        components:{
+            cpn:{
+                template:'#cpn',
+
+            },
+        },
+    })
+</script>
+</body>
+</html>

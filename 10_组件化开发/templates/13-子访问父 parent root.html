@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!--被vue管理的标签(作用域内)-->
+<div id="moe">
+    <h1>{{title}}</h1>
+    <h2>{{message}}</h2>
+    <cpn></cpn>
+</div>
+
+<template id="cpn">
+    <div>
+        <p>cpn组件</p>
+        <ccpn></ccpn>
+    </div>
+</template>
+
+<template id="ccpn">
+    <div>
+        <p>ccpn子组件</p>
+        <ul>
+            <li>铃果 so sexy</li>
+            <li>铃果 so sexy</li>
+            <li>铃果 so sexy</li>
+            <li>铃果 so sexy</li>
+            <li>铃果 so sexy</li>
+        </ul>
+        <button @click="btnClick">按钮</button>
+        <button @click="btnClickRoot">root按钮</button>
+    </div>
+</template>
+
+<!--导入vue-->
+<script src="../static/js/vue.js"></script>
+<!--js-->
+<script>
+    // 将data单独分离分离出来
+    const datas = {
+        title:'组件化',
+        message:'子访问父',
+    };
+
+    const test = new Vue({
+        el:"#moe",// 约等于 原生JS的document.querySelector("#moe");
+        data: datas,
+        components:{
+            cpn:{
+                template:"#cpn",
+                components: {
+                    ccpn:{
+                        template: '#ccpn',
+                        methods:{
+                            btnClick(){
+                                // 访问父组件
+                                console.log(this.$parent);
+                                console.log(this.$parent.name);
+                            },
+                            btnClickRoot(){
+                                // 访问根父组件
+                                console.log(this.$root);
+                                console.log(this.$root.message);
+                            }
+                        },
+                    },
+                },
+                data(){
+                    return {
+                        name:'cpn的name'
+                    }
+                },
+            },
+        },
+    })
+</script>
+</body>
+</html>
