@@ -7,7 +7,8 @@ up主: ilovecoding
 > https://www.bilibili.com/video/av89760569
 
 ## 演示
-只要更改相应的路径就能直接看到代码和演示效果了
+只要更改相应的路径就能直接看到代码和演示效果了.  
+代码效果打开需要时间把js加载完成.
 
 ### 具体项目文件位置：
 > https://github.com/DeSireFire/vueLearn/tree/master/08_书籍购物车案例/templates

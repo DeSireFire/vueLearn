@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!--被vue管理的标签(作用域内)-->
+<div id="moe">
+    <h1>{{title}}</h1>
+    <h2>{{message}}</h2>
+    <div>
+        <p v-pre>查看console对比代码打印结果</p>
+    </div>
+</div>
+
+<!--导入vue-->
+<script src="../static/js/vue.js"></script>
+<!--js-->
+<script>
+    // 将data单独分离分离出来
+    const datas = {
+        title:'箭头函数',
+        message:'this的使用',
+    };
+
+    // 普通写法
+    setTimeout(function () {
+        console.log('普通写法:');
+        console.log(this);
+    },1000);
+
+    //setTimeOut方法箭头函数写法
+    setTimeout(() => {
+        console.log('setTimeOut方法箭头函数写法:');
+        console.log(this);
+    },1000);
+
+    // 对象中，箭头函数的作用域
+    const obj = {
+        demo() {
+            setTimeout(function () {
+                console.log('嵌套普通写法:'+this);
+                console.log(this);
+            },1000);
+            setTimeout(() => {
+                console.log('嵌套setTimeOut方法箭头函数写法:'+this);
+                console.log(this);
+            },1000);
+        }
+    };
+    // 调用
+    obj.demo();
+
+    // 对象中，套娃箭头函数和普通函数作用域的对比
+    const obj2 = {
+        demo() {
+            setTimeout(function () {
+                setTimeout(function () {
+                    console.log('套娃普通函数下的嵌套普通写法:'+this);
+                    console.log(this);
+                },1000);
+                setTimeout(() => {
+                    console.log('套娃普通函数下的嵌套setTimeOut方法箭头函数写法:'+this);
+                    console.log(this);
+                },1000);
+            },1000);
+
+            setTimeout(() => {
+                setTimeout(function () {
+                    console.log('套娃箭头函数下的嵌套普通写法:'+this);
+                    console.log(this);
+                },1000);
+                setTimeout(() => {
+                    console.log('套娃箭头函数下的嵌套setTimeOut方法箭头函数写法:'+this);
+                    console.log(this);
+                },1000);
+            },1000);
+        }
+    };
+    // 调用
+    obj2.demo();
+
+    // 结论：箭头函数中的this时如何查找的?
+    // 答案：向外层作用域中，一层层查找this,直到找到有this的定义。（非箭头函数谁调用指向谁，es6的this找最近一层作用域的this）
+
+    const app = new Vue({
+        el:"#moe",// 约等于 原生JS的document.querySelector("#moe");
+        data: datas,
+        methods:{},
+    })
+</script>
+</body>
+</html>

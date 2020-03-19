@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!--被vue管理的标签(作用域内)-->
+<div id="moe">
+    <h1>{{title}}</h1>
+    <h2>{{message}}</h2>
+    <div>
+        <p v-pre>// 1. 参数问题：</p>
+        <p v-pre>// 1.1 放入两个参数</p>
+        <p v-pre>const mysum = (num1, num2) => {</p>
+        <p v-pre>return num1+num2</p>
+        <p v-pre>};</p>
+        <p v-pre>//1.2 放入一个参数</p>
+        <p v-pre>const mypower = num => {</p>
+        <p v-pre>return num * num</p>
+        <p v-pre>};</p>
+        <p v-pre>// 2. 函数代码块</p>
+        <p v-pre>// 2.1 函数代码块中包含多行代码时可以这么写</p>
+        <p v-pre>const test = () => {</p>
+        <p v-pre>console.log('第一行代码');</p>
+        <p v-pre>console.log('第二行代码');</p>
+        <p v-pre>};</p>
+        <p v-pre>// 2.2 函数代码块中只有一行代码时可以这么写</p>
+        <p v-pre>// 等价于</p>
+        <p v-pre>// const mymul = (num1, num2) => {</p>
+        <p v-pre>//     return num1*num2</p>
+        <p v-pre>// };</p>
+        <p v-pre>const mymul = (num1, num2) => num1*num2;</p>
+    </div>
+</div>
+
+<!--导入vue-->
+<script src="../static/js/vue.js"></script>
+<!--js-->
+<script>
+    // 将data单独分离分离出来
+    const datas = {
+        title:'箭头函数',
+        message:'参数和返回值',
+    };
+
+    // 1. 参数问题：
+    // 1.1 放入两个参数
+    const mysum = (num1, num2) => {
+        return num1+num2
+    };
+    //1.2 放入一个参数
+    const mypower = num => {
+        return num * num
+    };
+    // 2. 函数代码块
+    // 2.1 函数代码块中包含多行代码时可以这么写
+    const test = () => {
+        console.log('第一行代码');
+        console.log('第二行代码');
+    };
+    // 2.2 函数代码块中只有一行代码时可以这么写
+    // 等价于
+    // const mymul = (num1, num2) => {
+    //     return num1*num2
+    // };
+    const mymul = (num1, num2) => num1*num2;
+
+    console.log(mymul(20, 30));
+
+    const app = new Vue({
+        el:"#moe",// 约等于 原生JS的document.querySelector("#moe");
+        data: datas,
+        methods:{},
+    })
+</script>
+</body>
+</html>

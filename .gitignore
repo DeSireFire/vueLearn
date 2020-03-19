@@ -129,3 +129,6 @@ dmypy.json
 .pyre/
 .idea
 .idea/
+*/node_modules
+plus+_VueCli4/*/node_modules
+
