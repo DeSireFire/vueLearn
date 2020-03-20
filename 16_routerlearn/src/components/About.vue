@@ -8,7 +8,8 @@
 
 <script>
     export default {
-        name: "about"
+        name: "about",
+        // 生命周期函数
     }
 </script>
 
