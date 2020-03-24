@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!--被vue管理的标签(作用域内)-->
+<div id="moe">
+    <h1>{{title}}</h1>
+    <h2>{{message}}</h2>
+</div>
+
+<!--导入vue-->
+<script src="../static/js/vue.js"></script>
+<!--js-->
+<script>
+    // 将data单独分离分离出来
+    const datas = {
+        title:'promise',
+        message:'链式调用',
+    };
+    const app = new Vue({
+        el:"#moe",// 约等于 原生JS的document.querySelector("#moe");
+        data: datas,
+        methods:{},
+    });
+
+    new Promise((resolve,reject) => {
+        setTimeout(() => {
+            // 第一次网络请求代码
+            resolve('hello~~~');
+        },1000)
+    }).then((data)=>{
+        // 第一次拿到结果后得处理代码
+        console.log(data);
+        return new Promise((resolve,reject) => {
+            console.log(data);
+            console.log(this.data);
+            // 模拟第二次网络请求代码耗时1秒
+            setTimeout((data) => {
+
+                // 第一次网络请求代码
+                resolve(data+"dalao~");
+            },1000)
+    }).then((data)=>{
+        // 第二次拿到结果后的处理代码
+        console.log(data);
+        return new Promise((resolve,reject) => {
+            // 模拟第三次网络请求代码耗时1秒
+            setTimeout((data) => {
+                // 第三次网络请求代码
+                console.log(data);
+                resolve(data+"dalao~");
+            },1000)
+    }).then((data)=>{
+        // 第三次拿到结果后的处理代码
+        console.log(data);
+    })
+    });
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!--被vue管理的标签(作用域内)-->
+<div id="moe">
+    <h1>{{title}}</h1>
+    <h2>{{message}}</h2>
+</div>
+
+<!--导入vue-->
+<script src="../static/js/vue.js"></script>
+<!--js-->
+<script>
+    // 将data单独分离分离出来
+    const datas = {
+        title:'promise',
+        message:'基础使用',
+    };
+    const app = new Vue({
+        el:"#moe",// 约等于 原生JS的document.querySelector("#moe");
+        data: datas,
+        methods:{},
+    })
+    // new Promise(参数);
+    // 什么情况使用？
+    // 一般情况下是有异步操作时，使用promise对这个异步操作进行封装
+    // new -> 构造函数（1.保存了一些状态信息 2.执行传入的函数）
+    // 在执行传入的回调函数时，会传入两个参数，resolve,resject.本身又是函数
+    // resolve 成功状态
+    // resolve 失败状态
+    new Promise((resolve,reject) => {
+        setTimeout((data) => {
+            // 成功的时候调用resolve->then
+            // resolve(data);
+            // 失败的时候调用reject->catch
+            reject('error message');
+        },1000)
+    }).then((data)=>{
+        console.log(data);
+        console.log(data);
+        console.log(data);
+    }).catch((err) => {
+        // reject 异常处理
+        console.log(err);
+    });
+</script>
+</body>
+</html>

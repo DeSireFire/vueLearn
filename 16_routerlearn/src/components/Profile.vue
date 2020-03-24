@@ -10,6 +10,9 @@
 <script>
     export default {
         name: "Profile",
+        destroyed() {
+            console.log('Profile destroyed');
+        },
     }
 
 </script>

@@ -47,7 +47,18 @@
     <button @click="profileClick">档案</button>
 
     <hr>
-    <router-view class="borderline"></router-view>
+    <h1>raw</h1>
+      <router-view class="borderline"></router-view>
+    <br>
+    <h1>keep-alive</h1>
+      <keep-alive>
+        <router-view class="borderline"></router-view>
+      </keep-alive>
+    <br>
+    <h1>keep-alive exclude</h1>
+      <keep-alive exclude="Profile,User">
+        <router-view class="borderline"></router-view>
+      </keep-alive>
     <h2>我是app中的一些底部权限信息</h2>
   </div>
 </template>

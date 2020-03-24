@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!--被vue管理的标签(作用域内)-->
+<div id="moe">
+    <h1>{{title}}</h1>
+    <h2>{{message}}</h2>
+</div>
+
+<!--导入vue-->
+<script src="../static/js/vue.js"></script>
+<!--<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>-->
+<!--js-->
+<script>
+    // 将data单独分离分离出来
+    const datas = {
+        title:'promise',
+        message:'链式调用 allSettled',
+    };
+    const app = new Vue({
+        el:"#moe",// 约等于 原生JS的document.querySelector("#moe");
+        data: datas,
+        methods:{},
+    });
+
+    // 处理场景： 需要异步请求同调
+    // 伪代码，会报错
+    Promise.allSettled([
+        new Promise((resolve,reject) => {
+            // $.ajax({
+            //     url:'https://api.bilibili.com/x/web-interface/view?aid=170001',
+            //     methods: 'GET',
+            //     success:function (data) {
+            //         resolve(data)
+            //     }
+            // });
+
+            // 模拟请求代码
+            setTimeout(() => {
+                resolve('aaa')
+            },1000)
+
+        }),
+        new Promise((resolve,reject) => {
+            // $.ajax({
+            //     url:'https://api.bilibili.com/x/web-interface/view?bvid=BV17x411w7KC',
+            //     success:function (data) {
+            //         resolve(data)
+            //     }
+            // });
+            // 模拟请求代码
+            setTimeout(() => {
+                resolve('bbb')
+            },1000)
+        }),
+    ]).then(results => {
+        // results[0] // 对应的是第一个请求
+        console.log(results);
+        console.log(results[0]);
+    })
+
+
+</script>
+</body>
+</html>

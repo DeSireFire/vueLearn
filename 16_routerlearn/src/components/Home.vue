@@ -12,17 +12,25 @@
     export default {
         name: "Home",
         // 生命周期函数
-        created() {
-            console.log('created');
-            // 修改对应页面的title
-            document.title = '首页';
-        },
+        // created() {
+        //     console.log('home created');
+        //     // 修改对应页面的title
+        //     document.title = '首页';
+        // },
         mounted() {
-            console.log('mounted')
+            console.log('home mounted')
         },
         updated() {
-            console.log('updated')
+            console.log('home updated')
         },
+        destroyed() {
+            console.log('home destroyed');
+        },
+        // beforeRouteLeave(to, from, next) {
+        //     console.log(this.$route.path);
+        //     this.path = this.$route.path;
+        //     next()
+        // },
     }
 </script>
 

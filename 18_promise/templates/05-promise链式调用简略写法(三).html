@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!--被vue管理的标签(作用域内)-->
+<div id="moe">
+    <h1>{{title}}</h1>
+    <h2>{{message}}</h2>
+</div>
+
+<!--导入vue-->
+<script src="../static/js/vue.js"></script>
+<!--js-->
+<script>
+    // 将data单独分离分离出来
+    const datas = {
+        title:'promise',
+        message:'链式调用3',
+    };
+    const app = new Vue({
+        el:"#moe",// 约等于 原生JS的document.querySelector("#moe");
+        data: datas,
+        methods:{},
+    });
+
+    // wrapped into
+    // 网络请求： aaa -> 自己处理（10行）
+    // 处理： aaa111 -> 自己处理（10行）
+    // 处理： aaa11122 -> 自己处理
+    new Promise((resolve,reject) => {
+        setTimeout(() => {
+            resolve('aaa')
+        },1000)
+    }).then(res => {
+        // 1.自己处理10行代码
+        console.log(res,'第一层的10行处理代码');
+        // 2.对结果进行第一次处理
+        return Promise.resolve(res + "111")
+    }).then(res => {
+        // 1.自己处理10行代码
+        console.log(res,'第二层的10行处理代码');
+        // 2.对结果进行第二次处理
+        return Promise.resolve(res + "222")
+    }).then(res => {
+        // 1.自己处理10行代码
+        console.log(res,'第三层的10行处理代码');
+        // 2.对结果进行第三次处理
+        return Promise.resolve(res + "222")
+    })
+
+
+</script>
+</body>
+</html>
